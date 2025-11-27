@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 5px 5px 0 0;
+    }
+    .content {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border: 1px solid #ddd;
+    }
+    .footer {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-size: 12px;
+      border-radius: 0 0 5px 5px;
+    }
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>¡Bienvenido a {{companyName}}!</h1>
+  </div>
+  <div class="content">
+    <h2>Hola {{userName}},</h2>
+    <p>Gracias por unirte a nuestra plataforma. Estamos emocionados de tenerte con nosotros.</p>
+    <p>Tu cuenta ha sido creada exitosamente y ya puedes comenzar a usar nuestros servicios.</p>
+    <a href="{{loginUrl}}" class="button">Iniciar Sesión</a>
+    <p>Si tienes alguna pregunta, no dudes en contactarnos.</p>
+  </div>
+  <div class="footer">
+    <p>&copy; 2025 {{companyName}}. Todos los derechos reservados.</p>
+  </div>
+</body>
+</html>

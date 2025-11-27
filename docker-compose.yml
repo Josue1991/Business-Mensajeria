@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7
+    container_name: business-mensajeria-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: business_mensajeria
+
+  redis:
+    image: redis:7-alpine
+    container_name: business-mensajeria-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  business-mensajeria:
+    build: .
+    container_name: business-mensajeria-service
+    depends_on:
+      - mongodb
+      - redis
+    ports:
+      - "3006:3006"
+    environment:
+      PORT: 3006
+      NODE_ENV: production
+      MONGODB_URI: mongodb://mongodb:27017/business_mensajeria
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      TWILIO_ACCOUNT_SID: ${TWILIO_ACCOUNT_SID}
+      TWILIO_AUTH_TOKEN: ${TWILIO_AUTH_TOKEN}
+      TWILIO_PHONE_NUMBER: ${TWILIO_PHONE_NUMBER}
+      API_KEY: ${API_KEY}
+    volumes:
+      - ./logs:/app/logs
+      - ./templates:/app/templates
+
+volumes:
+  mongodb_data:
+  redis_data:
